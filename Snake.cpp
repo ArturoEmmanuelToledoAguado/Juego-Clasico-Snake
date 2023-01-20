@@ -7,14 +7,14 @@
 
 using  namespace std;
 
-/* A function that allows you to move the cursor to a specific position*/
+/*Función que permite desplazar el cursor a una posición determinada.*/
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 COORD CursorPosition;
 
 /**
- * It sets the cursor position to the x and y coordinates you specify.
- * @param x The x coordinate of the cursor.
- * @param y The y coordinate of the cursor.
+ * Establece la posición del cursor en las coordenadas x e y que especifiques.
+ * @param x La coordenada x del cursor.
+ * @param y La coordenada y del cursor.
  **/
 void gotoxy(int x, int y){
     CursorPosition.X = x;
@@ -22,7 +22,7 @@ void gotoxy(int x, int y){
     SetConsoleCursorPosition(console,CursorPosition);
 }
 
-/* It's a class that represents a point in a 2D space */
+/* Es una clase que representa un punto en un espacio 2D */
 class Point{
     private:
         int x,y;
@@ -73,7 +73,7 @@ class Point{
         }
 };
 
-/* It's a class that represents a snake */
+/* Es una clase que representa una serpiente */
 class Snake{
     private:
         Point * cell[MAXSNKSIZE];//Array que representa a la serpiente
@@ -81,9 +81,9 @@ class Snake{
         int dir;//Dirección actual de la serpiente
         Point fruit;
     /**
-     * The snake moves by making the body follow the head, and the head moves by changing the direction of the head.
-     * @param x The x coordinate of the cell
-     * @param y The y-coordinate of the upper-left corner of the rectangle to be filled.
+     * La serpiente se mueve haciendo que el cuerpo siga a la cabeza, y la cabeza se mueve cambiando la dirección de la cabeza.
+     * @param x La coordenada x de la celda
+     * @param y La coordenada y de la esquina superior izquierda del rectángulo a rellenar.
      */
     public:
         Snake(){
