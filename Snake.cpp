@@ -111,7 +111,7 @@ class Snake{
         void Move(){
             //Limpiar la pantall
             system("cls");
-            
+
             //Hacer que el cuerpo siga a la cabeza
             for(int i=size-1;i>0;i--){
                 cell[i]->CopyPos(cell[i-1]);
@@ -141,7 +141,7 @@ class Snake{
 };
 
 int main(){
-    //Probamos
+    //Probamos la serpiente
     Snake snake;
     char op='l';
     do{
