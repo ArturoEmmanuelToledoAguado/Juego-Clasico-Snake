@@ -93,7 +93,7 @@ class Snake{
             for(int i=1;i<MAXSNKSIZE;i++){
                 cell[i]=NULL;
             }
-            fruit.SetPoint(rand()%50, rand()%25);
+            fruit.SetPoint(rand()%50, rand()%30);
         }
         void AddCell(int x,int y){
             cell[size++] = new Point(x,y);
@@ -138,7 +138,7 @@ class Snake{
             //Comer fruta
             if(fruit.GetX()==cell[0]->GetX() && fruit.GetY()==cell[0]->GetY()){
                 AddCell(0,0);
-                fruit.SetPoint(rand()%50, rand()%25);
+                fruit.SetPoint(rand()%50, rand()%30);
             }
 
             //Dibujar la serpiente
