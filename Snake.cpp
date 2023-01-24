@@ -145,7 +145,15 @@ class Snake{
             for(int i=0;i<size;i++)
                 cell[i]->Draw();
             fruit.Draw();
+
+            Debug();
+
             Sleep(200);
+        }
+        void Debug(){
+            for(int i=0; i<size;i++){
+                cell[i]->Debug();
+            }
         }
 };
 
