@@ -146,7 +146,7 @@ class Snake{
                 cell[i]->Draw();
             fruit.Draw();
 
-            Debug();
+            //Debug();
 
             Sleep(200);
         }
@@ -158,7 +158,7 @@ class Snake{
 };
 
 int main(){
-    //Generación random
+    //Generación no random
     srand((unsigned)time(NULL));
 
     //Probamos la serpiente
