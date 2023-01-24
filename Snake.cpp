@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <dos.h>
+#include <time.h>
 
 #define MAXSNKSIZE 100
 
@@ -92,6 +93,7 @@ class Snake{
             for(int i=1;i<MAXSNKSIZE;i++){
                 cell[i]=NULL;
             }
+            fruit.SetPoint(rand()%50, rand()%25);
         }
         void AddCell(int x,int y){
             cell[size++] = new Point(x,y);
@@ -133,14 +135,24 @@ class Snake{
                     break;
             }
 
+            //Comer fruta
+            if(fruit.GetX()==cell[0]->GetX() && fruit.GetY()==cell[0]->GetY()){
+                AddCell(0,0);
+                fruit.SetPoint(rand()%50, rand()%25);
+            }
+
             //Dibujar la serpiente
             for(int i=0;i<size;i++)
                 cell[i]->Draw();
+            fruit.Draw();
             Sleep(200);
         }
 };
 
 int main(){
+    //Generación random
+    srand((unsigned)time(NULL));
+
     //Probamos la serpiente
     Snake snake;
     char op='l';
