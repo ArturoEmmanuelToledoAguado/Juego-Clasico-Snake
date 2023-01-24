@@ -115,7 +115,7 @@ class Snake{
             system("cls");
 
             //Hacer que el cuerpo siga a la cabeza
-            for(int i=size-1;i>0;i--){
+            for(int i=size-1;i>1;i--){
                 cell[i]->CopyPos(cell[i-1]);
             }
 
