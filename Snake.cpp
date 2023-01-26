@@ -97,6 +97,7 @@ class Snake{
         int dir;//Dirección actual de la serpiente
         Point fruit;
         int state;//Estado (vivo/muerto)
+        int started;
     /**
      * La serpiente se mueve haciendo que el cuerpo siga a la cabeza, y la cabeza se mueve cambiando la dirección de la cabeza.
      * @param x La coordenada x de la celda
@@ -111,6 +112,7 @@ class Snake{
             }
             fruit.SetPoint(rand()%VentanaX, rand()%VentanaY);
             state=0;
+            started=0;
         }
         void AddCell(int x,int y){
             cell[size++] = new Point(x,y);
@@ -131,17 +133,45 @@ class Snake{
             if(dir!=75)
             dir = 77;//Mover derecha (flecha)
         }
+        void StartScreen(){
+            cout<<"\n            /^\\/^\\                                             ";
+			cout<<"\n          _|__|  O|                                              ";
+			cout<<"\n \\/     /~     \\_/ \\                                          ";
+			cout<<"\n  \\____|__________/  \\                                         ";
+			cout<<"\n         \\_______      \\                                       ";
+			cout<<"\n                 `\\     \\                 \\                   ";
+			cout<<"\n                   |     |                  \\                   ";
+			cout<<"\n                  /      /                    \\                 ";
+			cout<<"\n                 /     /                       \\\\              ";
+			cout<<"\n               /      /                         \\ \\            ";
+			cout<<"\n              /     /                            \\  \\          ";
+			cout<<"\n            /     /             _----_            \\   \\        ";
+			cout<<"\n           /     /           _-~      ~-_         |   |          ";
+			cout<<"\n          (      (        _-~    _--_    ~-_     _/   |          ";
+			cout<<"\n           \\      ~-____-~    _-~    ~-_    ~-_-~    /          ";
+			cout<<"\n             ~-_           _-~          ~-_       _-~            ";
+			cout<<"\n                ~--______-~                ~-___-~               ";
+		}
         void Move(){
             //Limpiar la pantall
             system("cls");
 
             if(state == 0){
-                cout<<"Presione cualquier tecla para continuar";
-                getch();
-                state=1;
-                size=1;
+                if(!started){
+                    StartScreen();
+                    cout<<"\n\n\tPresione cualquier tecla para continuar";
+                    getch();
+                    started=1;
+                    state=1;
+                    size=1;
+                }else{
+                    cout<<"\n\tFin del Juego\n";
+                    cout<<"\nPresione cualquier tecla para continuar";
+                    getch();
+                    state=1;
+                    size=1;
+                }
             }
-            
             //Hacer que el cuerpo siga a la cabeza
             for(int i=size-1;i>0;i--){
                 cell[i-1]->CopyPos(cell[i]);
