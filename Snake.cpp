@@ -79,6 +79,11 @@ class Point{
             p->x=x;
             p->y=y;
         }
+        int BiteMySelf(Point * p){
+            if(p->x == x && p->y == y)
+                return 1;
+            return 0;
+        }
         void Debug(){
             cout<<"("<<x<<","<<y<<")";
         }
@@ -91,6 +96,7 @@ class Snake{
         int size;//Tamano actual de la serpiente
         int dir;//Dirección actual de la serpiente
         Point fruit;
+        int state;//Estado (vivo/muerto)
     /**
      * La serpiente se mueve haciendo que el cuerpo siga a la cabeza, y la cabeza se mueve cambiando la dirección de la cabeza.
      * @param x La coordenada x de la celda
@@ -104,6 +110,7 @@ class Snake{
                 cell[i]=NULL;
             }
             fruit.SetPoint(rand()%VentanaX, rand()%VentanaY);
+            state=0;
         }
         void AddCell(int x,int y){
             cell[size++] = new Point(x,y);
@@ -128,6 +135,13 @@ class Snake{
             //Limpiar la pantall
             system("cls");
 
+            if(state == 0){
+                cout<<"Presione cualquier tecla para continuar";
+                getch();
+                state=1;
+                size=1;
+            }
+            
             //Hacer que el cuerpo siga a la cabeza
             for(int i=size-1;i>0;i--){
                 cell[i-1]->CopyPos(cell[i]);
@@ -149,6 +163,9 @@ class Snake{
                     break;
             }
 
+            if(SelfCollision())
+                state=0;
+
             //Comer fruta
             if(fruit.GetX()==cell[0]->GetX() && fruit.GetY()==cell[0]->GetY()){
                 AddCell(0,0);
@@ -163,6 +180,13 @@ class Snake{
             //Debug();
 
             Sleep(100);
+        }
+        // If the head of the snake bites itself, return 1, else return 0
+        int SelfCollision(){
+            for(int i=1;i<size;i++)
+                if(cell[0]->BiteMySelf(cell[i]))
+                    return 1;
+            return 0;
         }
         void Debug(){
             for(int i=0; i<size;i++){
