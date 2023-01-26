@@ -49,15 +49,23 @@ class Point{
         }
         void TurnUp(){
             y++;
+            if(y>VentanaY)
+                y=0;
         }
         void TurnDown(){
             y--;
+            if(y<0)
+                y=VentanaY;
         }
         void TurnLeft(){
             x--;
+            if(x<0)
+                x=VentanaX;
         }
         void TurnRight(){
             x++;
+            if(x>VentanaX)
+                x=0;
         }
         void Draw(){
             gotoxy(x,y);
