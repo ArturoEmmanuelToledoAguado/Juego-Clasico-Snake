@@ -101,15 +101,19 @@ class Snake{
             cell[size++] = new Point(x,y);
         }
         void TurnDown(){
+            if(dir!=80)
             dir = 72;//Mover arriba (flecha)
         }
         void TurnUp(){
+            if(dir!=72)
             dir = 80;//Mover abajo (flecha)
         }
         void TurnLeft(){
+            if(dir!=77)
             dir = 75;//Mover izquierda (flecha)
         }
         void TurnRight(){
+            if(dir!=75)
             dir = 77;//Mover derecha (flecha)
         }
         void Move(){
@@ -150,7 +154,7 @@ class Snake{
 
             //Debug();
 
-            Sleep(200);
+            Sleep(100);
         }
         void Debug(){
             for(int i=0; i<size;i++){
