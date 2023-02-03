@@ -25,6 +25,25 @@ void gotoxy(int x, int y){
     SetConsoleCursorPosition(console,CursorPosition);
 }
 
+/**
+ * Setcursor(bool visible, DWORD size) // set bool visible = 0 -> invisible, bool visible = 1 -> visible
+ *
+ * El primer parámetro es un valor booleano. Si se establece en true, el cursor será visible. Si es falso, el cursor será invisible.
+ *
+ * @param visible verdadero o falso
+ * @param size El tamaño del cursor. Este parámetro puede tener un valor de 1 a 20. El aspecto del cursor varía en función del tamaño
+ */
+void setcursor(bool visible, DWORD size) //Poner visible = 0 -> invisible, bool visible = 1 -> visible
+{
+	if(size == 0){
+		size = 20;
+	}
+	CONSOLE_CURSOR_INFO lpCursor;
+	lpCursor.bVisible = visible;
+	lpCursor.dwSize = size;
+	SetConsoleCursorInfo(console,&lpCursor);
+}
+
 /* Es una clase que representa un punto en un espacio 2D */
 class Point{
     private:
@@ -235,6 +254,7 @@ class Snake{
 
 int main(){
     //Generación no random
+    setcursor(0,0);
     srand((unsigned)time(NULL));
 
     //Probamos la serpiente
