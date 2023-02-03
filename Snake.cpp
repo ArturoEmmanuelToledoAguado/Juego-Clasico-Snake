@@ -210,7 +210,9 @@ class Snake{
 
             /* Changing the color of the fruit. */
             SetConsoleTextAttribute(console,252);
-            fruit.Draw(149);
+            //if(!flashing)
+                fruit.Draw(149);
+            //flashing = !flashing;
             SetConsoleTextAttribute(console,242);
 
             //Debug();
