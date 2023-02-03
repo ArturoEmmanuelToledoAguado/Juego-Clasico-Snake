@@ -67,9 +67,9 @@ class Point{
             if(x>VentanaX)
                 x=0;
         }
-        void Draw(){
+        void Draw(char ch=178){
             gotoxy(x,y);
-            cout<<"*";
+            cout<<ch;
         }
         void Borrar(){
             gotoxy(x,y);
@@ -98,6 +98,7 @@ class Snake{
         Point fruit;
         int state;//Estado (vivo/muerto)
         int started;
+        int flashing;//Parpadeo de la fruta
     /**
      * La serpiente se mueve haciendo que el cuerpo siga a la cabeza, y la cabeza se mueve cambiando la dirección de la cabeza.
      * @param x La coordenada x de la celda
@@ -134,6 +135,7 @@ class Snake{
             dir = 77;//Mover derecha (flecha)
         }
         void StartScreen(){
+            SetConsoleTextAttribute(console,15);
             cout<<"\n            /^\\/^\\                                             ";
 			cout<<"\n          _|__|  O|                                              ";
 			cout<<"\n \\/     /~     \\_/ \\                                          ";
@@ -205,7 +207,11 @@ class Snake{
             //Dibujar la serpiente
             for(int i=0;i<size;i++)
                 cell[i]->Draw();
-            fruit.Draw();
+
+            /* Changing the color of the fruit. */
+            SetConsoleTextAttribute(console,252);
+            fruit.Draw(149);
+            SetConsoleTextAttribute(console,242);
 
             //Debug();
 
